@@ -17,7 +17,7 @@ my $run = Mojo::Run->new;
 $run->max_forks(10);
 $run->log(Mojo::Log->new(
     level => 'error',
-	path  => 'log/mojo_run.log',
+    path  => 'log/mojo_run.log',
 ));
 
 $run->spawn(
@@ -63,20 +63,20 @@ $run->start;
 
 # Result
 Result in **exit_cb** is a HASH with following keys:
-<blockquote>
-    <p>**cmd**</p>
-    <p>**param**</p>
-    <p>**exit_status**</p>
-    <p>**exit_signal**</p>
-    <p>**exit_core**</p>
-    <p>**stdout**</p>
-    <p>**stderr**</p>
-    <p>**result**</p>
-    <p>**time_started**</p>
-    <p>**time_stopped**</p>
-    <p>**time_duration_exec**</p>
-    <p>**time_duration_total**</p>
-</blockquote>
+
+* **cmd**
+* **param**
+* **exit_status**
+* **exit_signal**
+* **exit_core**
+* **stdout**
+* **stderr**
+* **result**
+* **time_started**
+* **time_stopped**
+* **time_duration_exec**
+* **time_duration_total**
+
 
 # LICENSE AND COPYRIGHT
 Copyright (C) 2012 "Alexey Likhatskiy"
