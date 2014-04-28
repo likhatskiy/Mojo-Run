@@ -77,8 +77,15 @@ Result in **exit_cb** is a HASH with following keys:
 * **time_duration_exec**
 * **time_duration_total**
 
+# SOURCE REPOSITORY
+
+L<http://github.com/jberger/Galileo> 
+
+# AUTHOR
+
+Alexey Likhatskiy, <likhatskiy@gmail.com>
 
 # LICENSE AND COPYRIGHT
-Copyright (C) 2012 "Alexey Likhatskiy"
+Copyright (C) 2012-2013 "Alexey Likhatskiy"
 
 This is free software; you can redistribute it and/or modify it under the same terms as the Perl 5 programming language system itself.
