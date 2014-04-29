@@ -533,3 +533,111 @@ sub DESTROY {
 }
 
 1;
+
+=pod
+ 
+=head1 NAME
+
+Mojo::Run - asynchronous external command execution for Mojo
+
+=head1 VERSION
+
+version 0.2
+
+=head1 SYNOPSIS
+
+	use Mojo::Run;
+	use Mojo::Log;
+
+	my $run = Mojo::Run->new;
+	$run->max_forks(10);
+	$run->log(Mojo::Log->new(
+	    level => 'error',
+	    path  => 'log/mojo_run.log',
+	));
+
+	$run->spawn(
+	    cmd => sub {
+	        my $pid   = shift;
+	        my $param = shift; # {a => 1, b => 2}
+	        
+	        my $data = {};
+	        ... do something
+	        return $data;
+	    },
+	    param => {a => 1, b => 2},
+	    exec_timeout => 120, # sec
+	    stdout_cb => sub {
+	        my ($pid, $chunk) = @_;
+	    },
+	    stderr_cb => sub {
+	        my ($pid, $chunk) = @_;
+	    },
+	    exit_cb => sub {
+	        my $pid = shift;
+	        my $res = shift;
+	        warn $res->{result}->[0];
+	    },
+	);
+	$run->spawn(
+	    cmd => 'ps aux',
+	    exit_cb => sub {
+	        my $pid = shift;
+	        my $res = shift;
+	    },
+	);
+	$run->spawn(
+	    cmd => ['perl', '-v'],
+	    exit_cb => sub {
+	        my $pid = shift;
+	        my $res = shift;
+	    },
+	);
+
+	$run->start;
+
+=head1 Result
+
+Result in B< exit_cb > is a HASH with following keys:
+
+=over
+ 
+=item B< cmd >
+
+=item B< param >
+
+=item B< exit_status >
+
+=item B< exit_signal >
+
+=item B< exit_core >
+
+=item B< stdout >
+
+=item B< stderr >
+
+=item B< result >
+
+=item B< time_started >
+
+=item B< time_stopped >
+
+=item B< time_duration_exec >
+
+=item B< time_duration_total >
+
+=back
+
+=head1 SOURCE REPOSITORY
+
+L<https://github.com/likhatskiy/Mojo-Run> 
+
+=head1 AUTHOR
+
+Alexey Likhatskiy, <likhatskiy@gmail.com>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (C) 2012-2013 "Alexey Likhatskiy"
+
+This is free software; you can redistribute it and/or modify it under the same terms as the Perl 5 programming language system itself.

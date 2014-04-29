@@ -79,7 +79,7 @@ Result in **exit_cb** is a HASH with following keys:
 
 # SOURCE REPOSITORY
 
-L<http://github.com/jberger/Galileo> 
+L<https://github.com/likhatskiy/Mojo-Run> 
 
 # AUTHOR
 
