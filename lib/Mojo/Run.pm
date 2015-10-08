@@ -40,17 +40,18 @@ BEGIN {
 	};	
 }
 
-sub new { __PACKAGE__->singleton }
+sub new { shift;__PACKAGE__->singleton(@_) }
 
 sub singleton {
 	return $_obj if defined $_obj;
-	return $_obj = __PACKAGE__->_constructor;
+    shift;
+	return $_obj = __PACKAGE__->_constructor(@_);
 }
 
 sub _constructor {
 	my $proto = shift;
 	my $class = ref($proto) || $proto;
-	my $self  = $class->SUPER::new;
+	my $self  = $class->SUPER::new(@_);
 
 	bless $self => $class;
 	
